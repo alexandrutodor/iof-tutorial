@@ -9,10 +9,13 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y docker-ce-cli
 
+# Ensure the docker group exists and add vscode user to it
+RUN if ! getent group docker; then groupadd docker; fi \
+    && usermod -aG docker vscode
+
+
 # Install Docker Compose
 RUN curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose
 
-# (Optional) Add your user to the Docker group
-# Note: The vscode user is the default user in VS Code dev containers
-RUN usermod -aG docker vscode
+
