@@ -1,11 +1,9 @@
 {
     "name": "GraphDB in Codespaces",
-    "image": "mcr.microsoft.com/vscode/devcontainers/universal:1-linux",
+    "image": "mcr.microsoft.com/vscode/devcontainers/base:0-buster",
     "forwardPorts": [7200],
+    "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
     "postCreateCommand": "docker run -d -p 7200:7200 --name graphdb-materials khaller/graphdb-free:10.0.0",
-    "features": {
-      "docker": "latest"
-    },
-    "remoteUser": "codespace"
+    "remoteUser": "vscode"
   }
   
