@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  graphdb:
+    image: khaller/graphdb-free:10.0.0
+    container_name: graphdb-instance-name
+    ports:
+      - "127.0.0.1:7200:7200"
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - ..:/workspaces:cached
